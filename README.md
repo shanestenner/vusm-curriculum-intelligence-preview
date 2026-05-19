@@ -15,23 +15,43 @@ That's it. No Terminal, no GitHub account, no command-line tools.
 
 ---
 
-## Install (5 steps)
+## Install (~3 minutes)
 
-1. **Open Claude.** In the desktop app, this is the app icon. In the browser, go to [claude.ai](https://claude.ai) and sign in.
+**The canonical source** for adding custom skills is Anthropic's own support article — it stays current as Claude evolves: **[Use Skills in Claude — Add and Use Custom Skills](https://support.claude.com/en/articles/12512180-use-skills-in-claude#h_a4222fa77b)**. The short version is below; if the UI you see doesn't match this page, defer to Anthropic's article.
 
-2. **Open Settings → Skills.** In the desktop app: top-bar menu → Settings → Skills. In the browser: profile icon (top-right) → Settings → Skills.
+### Step 1: Enable code execution (one-time prerequisite)
 
-   ![Settings → Skills panel](assets/img/01-settings-skills.png)
+Custom skills require Claude's code-execution capability to be turned on:
 
-3. **Click "Create new skill"** (or "Upload skill" — wording varies between platforms).
+- **Free, Pro, or Max accounts:** Settings → **Capabilities** → enable **"Code execution and file creation"**.
+- **Team or Enterprise accounts:** Organization settings → Skills → enable both **"Code execution and file creation"** and **"Skills"** (your org admin may need to do this).
 
-4. **Drag in the zip** Shane sent you. Claude will read the skill name and description and confirm.
+You only have to do this once per account.
 
-   ![Upload skill dialog](assets/img/02-upload-skill.png)
+### Step 2: Open the Skills section
 
-5. **You're done.** Claude now has the "Curriculum Intelligence" skill available. The skill activates when you ask curriculum-related questions — no special command needed.
+Navigate to **Customize → Skills**.
 
-   ![Skill activated indicator](assets/img/03-skill-activated.png)
+![Customize → Skills](assets/img/01-customize-skills.png)
+
+### Step 3: Create and upload the skill
+
+Click the **"+"** button at the top of the Skills list. From the menu, choose **"+ Create skill"**, then **"Upload a skill"**.
+
+![Upload skill dialog](assets/img/02-upload-skill.png)
+
+Select the `curriculum-intelligence-<your-name>.zip` file Shane sent you. Claude reads the bundle and confirms:
+
+- Name: `curriculum-intelligence`
+- Description starts with "Curriculum Intelligence for VUSM faculty…"
+
+### Step 4: Verify it's in the list
+
+The skill should now appear with a toggle switch (default: on).
+
+![Skill in list](assets/img/03-skill-activated.png)
+
+That's it — no special command needed. The skill activates automatically when you ask curriculum-related questions.
 
 Platform-specific notes if you hit a snag:
 - **claude.ai web** — see [INSTALL_CLAUDE_AI.md](INSTALL_CLAUDE_AI.md).

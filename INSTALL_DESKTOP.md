@@ -1,62 +1,59 @@
 # Installing in the Claude desktop app (Mac or Windows)
 
-These are the click-by-click steps for installing the Curriculum Intelligence skill in the desktop app, with screenshots. The main [README](README.md) has the short version; this is the detailed walkthrough.
+The Claude desktop app supports custom skills with the same overall flow as claude.ai web. **Anthropic's official guide is the canonical source** and covers any UI differences as they evolve:
 
-Tested on Claude desktop for Mac and Windows.
+> **[Anthropic — Use Skills in Claude (Add and Use Custom Skills)](https://support.claude.com/en/articles/12512180-use-skills-in-claude#h_a4222fa77b)**
+
+The Anthropic article currently documents the claude.ai web flow in detail; the desktop app's menu paths can differ slightly between releases, so the article is what to trust if anything below looks wrong.
 
 ---
 
-## 1. Open the desktop app
+## The short version
 
-Open the Claude app and sign in with the account you'd like to use. Personal or Vanderbilt SSO both work fine.
+1. **Prerequisite — enable code execution (one-time):**
+   - Open the desktop app's settings (top menu bar → Claude → Settings… on Mac, or the gear icon on Windows).
+   - Find **Capabilities** and toggle **"Code execution and file creation"** on.
+   - Team/Enterprise plans: your admin may need to enable this org-wide first.
 
-## 2. Open Settings
+2. **Open the Skills configuration:**
+   - Look for **Customize → Skills** (the same path as the web app).
 
-- **Mac**: top menu bar → **Claude** → **Settings…** (or `Cmd-,`)
-- **Windows**: top-right gear icon, or hamburger menu → **Settings**
+3. **Upload the bundle:**
+   - Click the **"+"** button at the top of the Skills list.
+   - Choose **"+ Create skill"** → **"Upload a skill"**.
+   - Select the `curriculum-intelligence-<your-name>.zip` file Shane sent you.
 
-![Desktop Settings menu](assets/img/desktop-01-settings.png)
+4. **Verify:**
+   - The skill should appear as **"Curriculum Intelligence"** in the list, with a toggle (default: on).
 
-## 3. Navigate to Skills
+5. **Try a query:**
+   - Open a new chat and ask: *"How comprehensively does VUSM cover diabetic ketoacidosis?"*
+   - Claude should return a VUSM-specific answer drawing on the curriculum knowledge graph.
 
-In the Settings window's sidebar, click **Skills**.
+---
 
-![Settings → Skills](assets/img/desktop-02-skills.png)
+## If your desktop app's UI looks different
 
-## 4. Upload the bundle
+The desktop app gets frequent updates and menu wording sometimes shifts:
 
-Click **Create new skill** (or "Upload skill" — wording may vary by version). A file picker opens. Navigate to where Shane's email saved your `curriculum-intelligence-<your-name>.zip` and select it.
+- If you don't see **Customize**, look for **Settings** or a gear icon, then **Skills** as a sidebar item.
+- If you see different button labels (e.g., "Add skill" instead of "+ Create skill"), follow what your app shows. The end goal is the same: upload the ZIP file.
+- If you can't find a Skills section at all in your desktop app, try [claude.ai](https://claude.ai) in your web browser instead — same account, same setup, definitely supports custom skills.
 
-![Upload dialog](assets/img/desktop-03-upload.png)
-
-The desktop app reads the bundle and shows a preview: name should be "**curriculum-intelligence**", description should mention "Curriculum Intelligence for VUSM faculty." Confirm.
-
-## 5. Verify
-
-The skill should now appear in your Skills list as "Curriculum Intelligence" with a toggle switch (default: on).
-
-![Skills list](assets/img/desktop-04-skill-enabled.png)
-
-## 6. Try a query
-
-Open a new chat and ask:
-
-> How comprehensively does VUSM cover diabetic ketoacidosis?
-
-Claude should pull curriculum data and give you a substantive answer with course names, session-level evidence, and Bloom's-level coverage. If you get a generic answer that doesn't mention VUSM courses, the skill probably didn't activate — check Settings → Skills and confirm the toggle is on.
+When in doubt, **Anthropic's [official guide](https://support.claude.com/en/articles/12512180-use-skills-in-claude#h_a4222fa77b) is more current than this page.**
 
 ---
 
 ## Troubleshooting
 
-**The upload says "Skill not valid" or similar.**
-Make sure you're uploading the **`.zip` file** (not the unzipped folder). The zip is named `curriculum-intelligence-<your-name>.zip`.
+**"Code execution must be enabled" error.**
+You missed the prerequisite step. Go back to Settings → Capabilities → "Code execution and file creation."
 
-**The skill is listed but Claude doesn't seem to be using it.**
-Try asking a more clearly VUSM-curriculum-flavored question: include the word "VUSM" or "curriculum" explicitly. The skill activates on those keyword triggers.
+**Upload says "Skill not valid" or similar.**
+Make sure you're uploading the `.zip` file (not the unzipped folder). The zip should be named `curriculum-intelligence-<your-name>.zip` and is under 50 KB.
 
 **Claude says it can't reach the API / "request failed."**
-This is usually a transient network issue. Try again in 30 seconds. If it persists for more than a minute, email Shane. The desktop app sometimes also needs an app restart to re-establish network state after a sleep/wake.
+This is usually transient. Try again in 30 seconds. The desktop app sometimes needs a restart after sleep/wake to re-establish network state.
 
 **I want to remove the skill.**
-Settings → Skills → Curriculum Intelligence → Remove. The bundle is deleted from the app; the API key is still issued server-side, so if you want to come back, you can re-upload the same zip later. To fully revoke (so the key stops working entirely), email Shane.
+Customize → Skills → Curriculum Intelligence → Remove. The bundle is deleted from your app. The API key is still issued server-side, so you could re-upload the same zip later — or email Shane to fully revoke the key.
