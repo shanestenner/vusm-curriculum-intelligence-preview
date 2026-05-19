@@ -4,7 +4,7 @@ After you've used the skill for a session or two (or whenever you have a moment)
 
 ## REDCap survey
 
-**Survey link:** _<Shane will paste the REDCap survey URL here once the form is published.>_
+**Survey link:** **https://redcap.vumc.org/surveys/?s=WLJA9CM79DPD3FHC**
 
 The survey takes ~5 minutes. It's anonymous unless you choose to include your name. You can submit it more than once if you'd like to share separate observations.
 
