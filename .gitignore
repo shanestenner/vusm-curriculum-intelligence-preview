@@ -1,0 +1,16 @@
+# Personalized colleague bundles must NEVER reach this public repo —
+# each one carries a real per-consumer API key in plaintext.
+*.zip
+_roster.csv
+_orphans.log
+
+# Local OS / editor cruft
+.DS_Store
+Thumbs.db
+*.swp
+*~
+
+# Pre-commit and venv noise
+__pycache__/
+.venv/
+.pytest_cache/

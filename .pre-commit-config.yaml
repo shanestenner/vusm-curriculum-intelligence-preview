@@ -1,0 +1,29 @@
+# Block accidental commits of personalized API tokens.
+# The `vusm_live_*` prefix is the per-consumer key format issued by the
+# curriculum-api Worker; finding one in this public repo means a real
+# colleague's API key was about to be exposed publicly.
+#
+# Activate locally with:
+#   pip install pre-commit && pre-commit install
+#
+# If a future test fixture legitimately needs to reference the pattern,
+# add a tight allowlist via `args: ['--ignore=path/to/file']`.
+
+repos:
+  - repo: local
+    hooks:
+      - id: vusm-live-token-guard
+        name: block vusm_live_* API tokens
+        entry: 'vusm_live_[A-Za-z0-9_-]{20,}'
+        language: pygrep
+        types: [text]
+        exclude: '^(\.pre-commit-config\.yaml|README\.md|INSTALL_.*\.md)$'
+
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0
+    hooks:
+      - id: check-added-large-files
+        args: ['--maxkb=1024']
+      - id: check-yaml
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
