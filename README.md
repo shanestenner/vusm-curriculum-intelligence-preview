@@ -21,14 +21,26 @@ That's it. No Terminal, no GitHub account, no command-line tools.
 
 ### Step 1: One-time prerequisites
 
-You need two settings enabled on your account before the skill can work. Both are one-time setup — once enabled, you don't need to revisit them.
+You need three settings configured on your account before the skill can work. All are one-time setup — once enabled, you don't need to revisit them.
 
-Open **Settings → Capabilities** and confirm both toggles are on:
+Open **Settings → Capabilities** and confirm:
 
-1. **"Code execution and file creation"** — lets the skill run the code that talks to the curriculum API.
-2. **"Allow network egress"** — lets that code reach `https://vusm-curriculum-api.shanestenner.workers.dev`. Usually on by default. If you see "can't reach the API" errors later, this is the first thing to check.
+1. **"Code execution and file creation"** is on — lets the skill run the code that talks to the curriculum API.
+2. **"Allow network egress"** is on — lets that code reach the public internet.
 
-Both toggles live in the same Capabilities panel.
+   ![Capabilities panel — code execution and network egress toggles](assets/img/web-00-capabilities-toggles.png)
+
+3. **Domain allowlist** includes the curriculum API hostname. Scroll down in the same Capabilities panel to find the **"Additional allowed domains"** field. Paste in:
+
+   ```
+   vusm-curriculum-api.shanestenner.workers.dev
+   ```
+
+   Click **Add**. (The "Domain allowlist" dropdown above this field can stay on its default — "Package managers only" works fine as long as our hostname is in the additional-domains list. If you'd rather not list specific domains, you can switch the dropdown to "All domains" instead.)
+
+   ![Domain allowlist — additional allowed domains field with the API hostname](assets/img/web-00b-domain-allowlist.png)
+
+Without step 3, the skill will load and appear in your Skills list but every query will fail with a "can't reach the API" error — Claude's sandbox blocks outbound traffic to any hostname not in the allowlist, even with network egress on.
 
 ### Step 2: Open the Skills section
 

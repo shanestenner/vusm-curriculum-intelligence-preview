@@ -10,10 +10,11 @@ The Anthropic article currently documents the claude.ai web flow in detail; the 
 
 ## The short version
 
-1. **Prerequisites — enable code execution AND network egress (one-time):**
+1. **Prerequisites — three Capabilities settings (one-time):**
    - Open the desktop app's settings (top menu bar → Claude → Settings… on Mac, or the gear icon on Windows).
    - Find **Capabilities** and toggle **"Code execution and file creation"** on.
-   - In the same Capabilities section, confirm **"Allow network egress"** is on — the skill needs to reach the curriculum API at `vusm-curriculum-api.shanestenner.workers.dev`. Usually on by default.
+   - In the same Capabilities section, toggle **"Allow network egress"** on.
+   - Scroll down to **Domain allowlist** → **Additional allowed domains**, paste `vusm-curriculum-api.shanestenner.workers.dev`, and click **Add**. The default "Package managers only" mode blocks our API unless the hostname is listed explicitly. (Setting the dropdown to **"All domains"** also works, if you prefer.)
 
 2. **Open the Skills configuration:**
    - Look for **Customize → Skills** (the same path as the web app).
@@ -53,9 +54,9 @@ You missed the prerequisite step. Go back to Settings → Capabilities → "Code
 Make sure you're uploading the `.zip` file (not the unzipped folder). The zip should be named `curriculum-intelligence-<your-name>.zip` and is under 50 KB.
 
 **Claude says it can't reach the API / "request failed."**
-Most common cause: **network egress is off.** Settings → Capabilities → confirm **"Allow network egress"** is on (usually on by default).
+Most common cause: **the API hostname isn't in your Domain allowlist.** Settings → Capabilities → scroll to **Additional allowed domains** and confirm `vusm-curriculum-api.shanestenner.workers.dev` is listed. Also confirm **"Allow network egress"** is on.
 
-If that's already on, it's probably transient. Try again in 30 seconds. The desktop app sometimes needs a restart after sleep/wake to re-establish network state.
+If both are set correctly, it's probably transient. Try again in 30 seconds. The desktop app sometimes needs a restart after sleep/wake to re-establish network state.
 
 **I want to remove the skill.**
 Customize → Skills → Curriculum Intelligence → Remove. The bundle is deleted from your app. The API key is still issued server-side, so you could re-upload the same zip later — or email Shane to fully revoke the key.

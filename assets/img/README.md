@@ -1,36 +1,59 @@
 # Screenshots
 
-Placeholders for the install walkthroughs in [`../../README.md`](../../README.md),
-[`../../INSTALL_CLAUDE_AI.md`](../../INSTALL_CLAUDE_AI.md), and
+Reference shots used in the install walkthroughs:
+[`../../README.md`](../../README.md),
+[`../../INSTALL_CLAUDE_AI.md`](../../INSTALL_CLAUDE_AI.md),
 [`../../INSTALL_DESKTOP.md`](../../INSTALL_DESKTOP.md).
 
-Capture these during the first pilot install. Filenames referenced by the
-markdown files (file paths are case-sensitive):
+Captured during the first pilot install on claude.ai web (2026-05-19).
+The desktop app's UI is similar but not pixel-identical; use Anthropic's
+[current support article](https://support.claude.com/en/articles/12512180-use-skills-in-claude#h_a4222fa77b)
+if the desktop labels drift.
 
-**Generic walkthrough (README.md):**
-- `01-customize-skills.png` — Customize → Skills navigation
-- `02-upload-skill.png` — Upload skill dialog with zip selected
-- `03-skill-activated.png` — The activated skill in the Skills list
+## Generic walkthrough (README.md)
 
-**claude.ai web (INSTALL_CLAUDE_AI.md):**
-- `web-00-code-execution.png` — Settings → Capabilities with "Code execution and file creation" enabled
-- `web-00b-network-egress.png` — Settings → Capabilities with "Allow network egress" enabled (same panel as `00`; can be one combined screenshot if both toggles are visible)
-- `web-01-customize-skills.png` — Customize → Skills nav highlighted
-- `web-02-add-menu.png` — The "+" button's dropdown menu (showing "+ Create skill")
-- `web-03-upload-dialog.png` — "Upload a skill" dialog with the zip file selected and preview shown
-- `web-04-skill-enabled.png` — Skills list with Curriculum Intelligence toggled on
+These are the three highest-signal images, used in the short README:
 
-**Desktop app (INSTALL_DESKTOP.md):**
-The desktop flow isn't documented in detail in Anthropic's official article,
-so screenshots here are optional. If you do capture them, mirror the web set:
-- `desktop-00-code-execution.png`
-- `desktop-01-customize-skills.png`
-- `desktop-02-upload-dialog.png`
-- `desktop-03-skill-enabled.png`
+- `01-customize-skills.png` — Customize → Skills with the "+" button
+- `02-upload-skill.png` — Upload skill dialog ("Drag and drop or click to upload")
+- `03-skill-activated.png` — Skill installed with toggle on + detail pane
 
-When capturing screenshots, blur or crop out: account email, profile photo,
-session sidebar items, and any other personally-identifying information.
+## claude.ai web detailed walkthrough (INSTALL_CLAUDE_AI.md)
 
-The reference for the canonical install flow is Anthropic's article:
-[Use Skills in Claude — Add and Use Custom Skills](https://support.claude.com/en/articles/12512180-use-skills-in-claude#h_a4222fa77b).
-If their UI changes substantially, that page updates before this one does.
+Pre-step navigation:
+
+- `web-prereq-01-profile-menu.png` — Profile menu showing Settings
+- `web-prereq-02-settings-sidebar.png` — Settings → Capabilities highlighted
+
+Capabilities configuration:
+
+- `web-00-capabilities-toggles.png` — "Code execution and file creation" + "Allow network egress" both on
+- `web-00b-domain-allowlist.png` — Domain allowlist showing `vusm-curriculum-api.shanestenner.workers.dev` in Additional allowed domains
+
+Skill upload flow:
+
+- `web-01-customize-skills.png` — Customize → Skills with "+" button and "Add skill" tooltip
+- `web-02-add-menu-cascade.png` — Full menu cascade: "+" → "+ Create skill" → "Upload a skill"
+- `web-03-upload-dialog.png` — Upload skill modal ("Drag and drop or click to upload")
+- `web-04-skill-enabled.png` — Skills list with curriculum-intelligence installed + detail pane
+
+Optional "Try it" / success illustrations:
+
+- `web-05-try-query.png` — Chat composer with `/curriculum-intelligence` + the DKA sample query
+- `web-06-try-response.png` — Example response showing VUSM-specific course-level evidence
+
+## Capture notes
+
+When refreshing these (UI drift, new flows, etc.):
+
+- Blur or crop out: account email, profile photo, session sidebar items,
+  any other personally-identifying information.
+- The `web-04-skill-enabled.png` shot intentionally shows the full skill
+  detail pane — that's where colleagues see name/description/toggle state
+  matching what the bundle metadata advertises.
+- The `web-00b-domain-allowlist.png` shot deliberately shows the API
+  hostname pre-populated; that's the key install step colleagues hit if
+  the skill installs but queries fail.
+
+The canonical install flow lives in Anthropic's article (linked above).
+If their UI changes substantively, that page updates before this one does.

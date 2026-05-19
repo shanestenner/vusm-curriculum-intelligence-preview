@@ -8,26 +8,45 @@ Tested on Chrome, Safari, Firefox, and Edge.
 
 ---
 
-## Prerequisites: Enable code execution + network egress (one-time)
+## Prerequisites: Capabilities settings (one-time)
 
-You need two settings enabled on your account before the skill can talk to the curriculum API. Once configured, you don't need to revisit either.
+You need three things configured before the skill can talk to the curriculum API. Once set, you don't need to revisit them.
 
-### Code execution
+### Step 1: Open Settings → Capabilities
 
 1. Open **[claude.ai](https://claude.ai)** and sign in.
-2. Click your profile icon (top-right) → **Settings**.
+2. Click your profile (bottom-left) and choose **Settings**.
+
+   ![Profile menu → Settings](assets/img/web-prereq-01-profile-menu.png)
+
 3. In the Settings sidebar, click **Capabilities**.
-4. Toggle **"Code execution and file creation"** on.
 
-![Capabilities settings with code execution enabled](assets/img/web-00-code-execution.png)
+   ![Settings sidebar — Capabilities selected](assets/img/web-prereq-02-settings-sidebar.png)
 
-### Network egress
+### Step 2: Enable code execution and network egress
 
-Still in **Settings → Capabilities**, find the **"Allow network egress"** toggle and make sure it's on.
+In the Capabilities panel, make sure both of these are toggled on:
 
-This setting controls whether code running inside Claude's sandbox can reach the public internet. Our skill needs to call `https://vusm-curriculum-api.shanestenner.workers.dev` to fetch curriculum data — without this toggle, every query will load the skill but fail at the data-fetch step. It's usually on by default; you only need to verify it.
+- **"Code execution and file creation"** — lets the skill run code in a sandbox.
+- **"Allow network egress"** — lets that sandboxed code reach the internet.
 
-![Network egress toggle](assets/img/web-00b-network-egress.png)
+![Capabilities — Code execution + network egress toggles](assets/img/web-00-capabilities-toggles.png)
+
+### Step 3: Add the curriculum API to the Domain allowlist
+
+Scroll down to the **Domain allowlist** section. By default it's set to "Package managers only," which means the sandbox can reach npm / PyPI / etc. but NOT our curriculum API. You need to add our hostname explicitly.
+
+In the **"Additional allowed domains"** field, paste:
+
+```
+vusm-curriculum-api.shanestenner.workers.dev
+```
+
+Click **Add**.
+
+![Domain allowlist — additional allowed domains field](assets/img/web-00b-domain-allowlist.png)
+
+Without this step, the skill will install successfully and appear in your Skills list — but every query that tries to reach the curriculum data will fail. (If you'd prefer, switching the dropdown to **"All domains"** also works; it's just a broader setting.)
 
 ---
 
@@ -43,7 +62,7 @@ You should see a list of any skills already on your account (probably empty for 
 
 Click the **"+"** button at the top-right of the Skills list. A small menu appears.
 
-![Add skill menu](assets/img/web-02-add-menu.png)
+![Add skill menu cascade — "+" → "+ Create skill" → "Upload a skill"](assets/img/web-02-add-menu-cascade.png)
 
 Click **"+ Create skill"** in that menu.
 
@@ -72,7 +91,15 @@ Open a new conversation (top-left "+ New chat") and ask:
 
 > How comprehensively does VUSM cover diabetic ketoacidosis?
 
-Claude should call the curriculum knowledge graph and respond with specific VUSM course names, session evidence, and Bloom's-level coverage. If you get a generic medical answer with no VUSM specifics, the skill probably didn't activate — go back to **Customize → Skills** and confirm the toggle is on.
+You can also invoke the skill explicitly via the slash menu — type `/curriculum-intelligence` and Claude will scope to the skill, then continue with your question:
+
+![Slash menu — type / then enter the question](assets/img/web-05-try-query.png)
+
+A successful response names specific VUSM courses, sessions, MEPOs, and Bloom's-level coverage — not just a generic medical-textbook answer:
+
+![Example response — DKA coverage at VUSM](assets/img/web-06-try-response.png)
+
+If you get a generic medical answer with no VUSM specifics, the skill probably didn't activate — go back to **Customize → Skills** and confirm the toggle is on.
 
 ---
 
@@ -91,9 +118,9 @@ The prerequisite step above (Capabilities → "Code execution and file creation"
 - Confirm the skill's toggle is on in Customize → Skills.
 
 **Claude says it can't reach the API / "request failed."**
-Most common cause: **network egress is off.** Go to Settings → **Capabilities** and confirm **"Allow network egress"** is on (usually on by default).
+Most common cause: **the API hostname isn't in your Domain allowlist.** Go to Settings → **Capabilities** → scroll down to **Additional allowed domains** and confirm `vusm-curriculum-api.shanestenner.workers.dev` is listed. Also confirm **"Allow network egress"** is on.
 
-If that's already on, it's probably a transient network issue — try again in 30 seconds. If it persists for more than a minute, email Shane.
+If both are set correctly, it's probably a transient network issue — try again in 30 seconds. If it persists for more than a minute, email Shane.
 
 **I want to remove the skill.**
 Customize → Skills → Curriculum Intelligence → Remove. The bundle is deleted from your account; if you want to come back, you can re-upload the same zip later (the key inside stays valid until the pilot ends or you ask Shane to revoke it).
