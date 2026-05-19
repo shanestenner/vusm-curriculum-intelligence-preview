@@ -23,17 +23,12 @@ That's it. No Terminal, no GitHub account, no command-line tools.
 
 You need two settings enabled on your account before the skill can work. Both are one-time setup — once enabled, you don't need to revisit them.
 
-**1a. Code execution.** The skill uses Claude's code-execution capability to talk to the curriculum API.
+Open **Settings → Capabilities** and confirm both toggles are on:
 
-- **Free, Pro, or Max accounts:** Settings → **Capabilities** → enable **"Code execution and file creation"**.
-- **Team or Enterprise accounts:** Organization settings → Skills → enable **"Code execution and file creation"** and **"Skills"** (your org admin may need to do this).
+1. **"Code execution and file creation"** — lets the skill run the code that talks to the curriculum API.
+2. **"Allow network egress"** — lets that code reach `https://vusm-curriculum-api.shanestenner.workers.dev`. Usually on by default. If you see "can't reach the API" errors later, this is the first thing to check.
 
-**1b. Network egress (to reach the curriculum API).** The skill makes outbound HTTPS requests to `https://vusm-curriculum-api.shanestenner.workers.dev`.
-
-- **Free, Pro, or Max accounts:** Settings → **Capabilities** → make sure **"Allow network egress"** is on. It's usually on by default — if your skill returns "can't reach the API" errors, this is the first place to check.
-- **Team or Enterprise accounts:** your **org admin** needs to either (a) set network egress to **"All domains"**, or (b) add `vusm-curriculum-api.shanestenner.workers.dev` to the organization's **specific-domains allowlist**. If your org keeps egress disabled by default, the skill will load but every query will fail until admins update the allowlist.
-
-If you're unsure which plan tier you're on, look at Settings → Billing or ask Shane — he can tell from your invitation whether you should expect personal-plan or org-plan behavior.
+Both toggles live in the same Capabilities panel.
 
 ### Step 2: Open the Skills section
 
