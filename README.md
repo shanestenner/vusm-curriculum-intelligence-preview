@@ -19,14 +19,21 @@ That's it. No Terminal, no GitHub account, no command-line tools.
 
 **The canonical source** for adding custom skills is Anthropic's own support article — it stays current as Claude evolves: **[Use Skills in Claude — Add and Use Custom Skills](https://support.claude.com/en/articles/12512180-use-skills-in-claude#h_a4222fa77b)**. The short version is below; if the UI you see doesn't match this page, defer to Anthropic's article.
 
-### Step 1: Enable code execution (one-time prerequisite)
+### Step 1: One-time prerequisites
 
-Custom skills require Claude's code-execution capability to be turned on:
+You need two settings enabled on your account before the skill can work. Both are one-time setup — once enabled, you don't need to revisit them.
+
+**1a. Code execution.** The skill uses Claude's code-execution capability to talk to the curriculum API.
 
 - **Free, Pro, or Max accounts:** Settings → **Capabilities** → enable **"Code execution and file creation"**.
-- **Team or Enterprise accounts:** Organization settings → Skills → enable both **"Code execution and file creation"** and **"Skills"** (your org admin may need to do this).
+- **Team or Enterprise accounts:** Organization settings → Skills → enable **"Code execution and file creation"** and **"Skills"** (your org admin may need to do this).
 
-You only have to do this once per account.
+**1b. Network egress (to reach the curriculum API).** The skill makes outbound HTTPS requests to `https://vusm-curriculum-api.shanestenner.workers.dev`.
+
+- **Free, Pro, or Max accounts:** Settings → **Capabilities** → make sure **"Allow network egress"** is on. It's usually on by default — if your skill returns "can't reach the API" errors, this is the first place to check.
+- **Team or Enterprise accounts:** your **org admin** needs to either (a) set network egress to **"All domains"**, or (b) add `vusm-curriculum-api.shanestenner.workers.dev` to the organization's **specific-domains allowlist**. If your org keeps egress disabled by default, the skill will load but every query will fail until admins update the allowlist.
+
+If you're unsure which plan tier you're on, look at Settings → Billing or ask Shane — he can tell from your invitation whether you should expect personal-plan or org-plan behavior.
 
 ### Step 2: Open the Skills section
 

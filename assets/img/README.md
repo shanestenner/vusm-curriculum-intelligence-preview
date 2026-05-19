@@ -14,6 +14,7 @@ markdown files (file paths are case-sensitive):
 
 **claude.ai web (INSTALL_CLAUDE_AI.md):**
 - `web-00-code-execution.png` — Settings → Capabilities with "Code execution and file creation" enabled
+- `web-00b-network-egress.png` — Settings → Capabilities with "Allow network egress" enabled (same panel as `00`; can be one combined screenshot if both toggles are visible)
 - `web-01-customize-skills.png` — Customize → Skills nav highlighted
 - `web-02-add-menu.png` — The "+" button's dropdown menu (showing "+ Create skill")
 - `web-03-upload-dialog.png` — "Upload a skill" dialog with the zip file selected and preview shown

@@ -8,9 +8,11 @@ Tested on Chrome, Safari, Firefox, and Edge.
 
 ---
 
-## Prerequisite: Enable code execution (one-time)
+## Prerequisites: Enable code execution + network egress (one-time)
 
-Custom skills require Claude's code-execution capability to be turned on. You only need to do this once per account.
+You need two settings enabled on your account before the skill can talk to the curriculum API. Once configured, you don't need to revisit either.
+
+### Code execution
 
 1. Open **[claude.ai](https://claude.ai)** and sign in.
 2. Click your profile icon (top-right) → **Settings**.
@@ -19,7 +21,17 @@ Custom skills require Claude's code-execution capability to be turned on. You on
 
 ![Capabilities settings with code execution enabled](assets/img/web-00-code-execution.png)
 
-> **Team or Enterprise plans:** if you don't see Capabilities or the toggle is greyed out, your organization controls this. Ask your IT admin to enable **"Code execution and file creation"** and **"Skills"** under Organization settings → Skills.
+### Network egress
+
+Still in **Settings → Capabilities**, find the **"Allow network egress"** toggle and make sure it's on.
+
+This setting controls whether code running inside Claude's sandbox can reach the public internet. Our skill needs to call `https://vusm-curriculum-api.shanestenner.workers.dev` to fetch curriculum data — without this toggle, every query will load the skill but fail at the data-fetch step.
+
+![Network egress toggle](assets/img/web-00b-network-egress.png)
+
+**On personal plans (Free/Pro/Max), this toggle is usually on by default** and there's no per-domain allowlist to configure — the toggle is binary. You only need to verify it.
+
+> **Team or Enterprise plans:** the egress setting is controlled by your org admin under **Organization settings → Capabilities**. The admin needs to either set egress to **"All domains"**, or add `vusm-curriculum-api.shanestenner.workers.dev` to the organization's specific-domains allowlist. They'll also need to enable **"Code execution and file creation"** and **"Skills"** if those aren't already on. Share this README with your admin if you need to escalate the request.
 
 ---
 
@@ -83,7 +95,12 @@ The prerequisite step above (Capabilities → "Code execution and file creation"
 - Confirm the skill's toggle is on in Customize → Skills.
 
 **Claude says it can't reach the API / "request failed."**
-This is usually a transient network issue. Try again in 30 seconds. If it persists for more than a minute, email Shane.
+Most common cause first: **network egress is off or restricted.**
+
+- **Free/Pro/Max:** Go to Settings → **Capabilities** and confirm **"Allow network egress"** is on (usually on by default).
+- **Team/Enterprise:** Your org admin needs to either set network egress to **"All domains"** or add `vusm-curriculum-api.shanestenner.workers.dev` to the organization's specific-domains allowlist (Organization settings → Capabilities). The skill will load but every query fails until this is configured.
+
+If both of those are correct, it's usually a transient network issue — try again in 30 seconds. If it persists for more than a minute, email Shane.
 
 **I want to remove the skill.**
 Customize → Skills → Curriculum Intelligence → Remove. The bundle is deleted from your account; if you want to come back, you can re-upload the same zip later (the key inside stays valid until the pilot ends or you ask Shane to revoke it).

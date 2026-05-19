@@ -10,10 +10,11 @@ The Anthropic article currently documents the claude.ai web flow in detail; the 
 
 ## The short version
 
-1. **Prerequisite — enable code execution (one-time):**
+1. **Prerequisites — enable code execution AND network egress (one-time):**
    - Open the desktop app's settings (top menu bar → Claude → Settings… on Mac, or the gear icon on Windows).
    - Find **Capabilities** and toggle **"Code execution and file creation"** on.
-   - Team/Enterprise plans: your admin may need to enable this org-wide first.
+   - In the same Capabilities section, also confirm **"Allow network egress"** is on — the skill needs to reach the curriculum API at `vusm-curriculum-api.shanestenner.workers.dev`. On personal plans this is usually on by default.
+   - **Team/Enterprise plans:** your org admin must enable both settings org-wide AND either set egress to "All domains" or add `vusm-curriculum-api.shanestenner.workers.dev` to the specific-domains allowlist.
 
 2. **Open the Skills configuration:**
    - Look for **Customize → Skills** (the same path as the web app).
@@ -53,7 +54,12 @@ You missed the prerequisite step. Go back to Settings → Capabilities → "Code
 Make sure you're uploading the `.zip` file (not the unzipped folder). The zip should be named `curriculum-intelligence-<your-name>.zip` and is under 50 KB.
 
 **Claude says it can't reach the API / "request failed."**
-This is usually transient. Try again in 30 seconds. The desktop app sometimes needs a restart after sleep/wake to re-establish network state.
+Most common cause first: **network egress is off or restricted.**
+
+- **Free/Pro/Max:** Settings → Capabilities → confirm **"Allow network egress"** is on.
+- **Team/Enterprise:** your org admin needs to set egress to "All domains" or add `vusm-curriculum-api.shanestenner.workers.dev` to the org's specific-domains allowlist.
+
+If both of those are correct, it's usually transient. Try again in 30 seconds. The desktop app sometimes needs a restart after sleep/wake to re-establish network state.
 
 **I want to remove the skill.**
 Customize → Skills → Curriculum Intelligence → Remove. The bundle is deleted from your app. The API key is still issued server-side, so you could re-upload the same zip later — or email Shane to fully revoke the key.
