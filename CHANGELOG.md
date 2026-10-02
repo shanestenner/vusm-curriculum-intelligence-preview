@@ -4,6 +4,34 @@ Pilot-user-facing release notes for the `curriculum-intelligence` skill bundle. 
 
 ---
 
+## v1.2.0 – 2026-10-01
+
+### New
+- **One-call concept lookup** – ask about a concept and the skill gets its courses, phases, Bloom's levels, sample passages and related concepts in a single request (it used to take several). Answers come back faster.
+- **Abbreviations and everyday terms** – "MI", "DKA", "heart attack" and similar now land on the right concept. When a term could mean two things (MS can be multiple sclerosis or mitral stenosis), the skill tells you which one it picked, or asks.
+- **Readable passage samples** – each concept comes with short excerpts from real teaching materials, drawn from different courses.
+- **Faculty in the same request** – "Who teaches X?" now comes back with the concept itself (still course-level, as before).
+- **Clinical topic list** – USMLE and LCME vertical-trace questions now start from the full list of topics, so the skill no longer guesses topic names.
+
+### Improved
+- **Fewer invented citations** – the skill sticks to figures it actually retrieved, and says so when it doesn't have the data.
+- **Fewer dead ends** – when a name doesn't match, the skill tries other spellings and abbreviations before telling you the curriculum doesn't cover it.
+
+### Fixed
+- Questions about clinical topics no longer set off long runs of failed requests.
+- Blank search terms are caught before they go out.
+
+### Known issue
+Questions pinned to last academic year (2024-25) can occasionally miss a concept that is there. Questions about the current year aren't affected. A fix is on the way.
+
+### Migration
+If you're in the pilot, you'll get the v1.2.0 bundle and a fresh key directly. It replaces v1.1.0, with nothing to change in your settings. Older bundles show an "update available" banner on their first answer.
+
+### What drove these changes
+Pilot and test questions showed the skill spending several steps just finding the right concept before it could answer, and sometimes guessing at names. v1.2.0 moves that matching into the curriculum service, so the skill starts from the right concept.
+
+---
+
 ## v1.1.0 — 2026-05-27
 
 ### New
