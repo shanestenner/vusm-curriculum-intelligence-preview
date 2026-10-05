@@ -4,6 +4,13 @@ Pilot-user-facing release notes for the `curriculum-intelligence` skill bundle. 
 
 ---
 
+## v1.2.1 – 2026-10-02
+
+### Fixed
+- **Last academic year's lookups** – questions about 2024-25 now find every concept that year covered. A few were reported as missing even though they were there.
+
+---
+
 ## v1.2.0 – 2026-10-01
 
 ### New
