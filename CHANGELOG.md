@@ -4,6 +4,21 @@ Pilot-user-facing release notes for the `curriculum-intelligence` skill bundle. 
 
 ---
 
+## v1.3.1 – 2026-10-07
+
+### New
+- **What changed since last year.** Ask "what changed for sepsis since last year?" and the skill compares 2024-25 with 2025-26 for that concept: courses, phases, and passage, document and objective counts. Ask "what's new or gone this year?" for a whole-year summary.
+- **Read the change with care.** The 2025-26 concept index is much larger than last year's. Many concepts "gained" or "lost", and many count changes, come from how the materials were indexed, not from changes in teaching. Every answer carries that caveat, and the skill never says a topic was "newly taught" or "dropped".
+- **Honest matches.** When last year's concept can't be matched cleanly (for example, two older concepts folded into one), the skill says the match is uncertain and why. Where two older concepts merged, it gives the change as a range instead of a single number.
+
+### Improved
+- Tighter checks before reference data is published, so stale or mismatched data can't reach the skill.
+
+### Migration
+Pilot bundles for v1.3.1 will be sent directly. It replaces v1.3.0 with nothing to change in your settings. Older bundles show an "update available" banner on their first answer.
+
+---
+
 ## v1.3.0 – 2026-10-06
 
 ### New
