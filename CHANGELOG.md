@@ -4,6 +4,34 @@ Pilot-user-facing release notes for the `curriculum-intelligence` skill bundle. 
 
 ---
 
+## v1.3.0 – 2026-10-06
+
+### New
+- **Counting and absence questions in one step.** The skill answers each of these with a single request instead of checking concepts one by one:
+  - "Which required courses have no pharmacology in their teaching materials?"
+  - "Which concepts are taught only in FMK and match a USMLE topic?"
+  - "Which MEPOs have no objectives at the Analyze level or above?"
+  - "How many PBL sessions run each month?"
+  - "Which clinical topics have no FMK coverage?"
+  - "Which courses contribute most to an LCME element?"
+- **"Including subtypes."** Ask where a concept is taught together with all its subtypes, for example arrhythmias including atrial fibrillation and the tachycardias. Each passage counts once, even when it names several subtypes. Very broad groupings such as "disease" are left out on purpose; for those, the skill offers a category search instead.
+- **Drugs for a condition.** The skill shows which drugs our materials connect to a condition, using MED-RT's "may treat" list, and how many passages mention both. It works for families of conditions too ("any kind of infection"). MED-RT doesn't rank treatments, so the skill never calls a drug "first-line".
+
+### Improved
+- **Honest labels.**
+  - A concept "matches a USMLE/LCME benchmark topic"; the skill never calls it "high-yield".
+  - A missing match is "no evidence in the indexed materials", never "not taught".
+  - When only a course's objectives are indexed, not its teaching documents, the skill says so.
+- **Vertical traces show subtypes.** A topic's trace now notes when a subtype covers a phase that the concept itself doesn't.
+
+### Fixed
+- Tightened access to internal reference data. Nothing you can ask has changed.
+
+### Migration
+Pilot bundles and keys for v1.3.0 will be sent directly. It replaces v1.2.1 with nothing to change in your settings. Older bundles show an "update available" banner on their first answer.
+
+---
+
 ## v1.2.1 – 2026-10-02
 
 ### Fixed
