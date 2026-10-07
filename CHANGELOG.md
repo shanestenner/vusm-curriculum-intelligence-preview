@@ -4,6 +4,20 @@ Pilot-user-facing release notes for the `curriculum-intelligence` skill bundle. 
 
 ---
 
+## v1.3.2 – 2026-10-07
+
+### Fixed
+- **Links to lecture transcripts.** Evidence from recorded lectures now opens properly. The skill cites a transcript by course and lecture title. Transcripts have no VSTAR Learn link, so the skill doesn't offer one.
+- **Fewer wasted steps.** Counting questions no longer trip over a request-size limit, so answers come back a little faster.
+
+### Improved
+- **Faculty by name in one step.** "Who teaches X?" now comes back with each person's name, department and role in a single request.
+
+### Migration
+Pilot bundles for v1.3.2 will be sent directly. It replaces v1.3.1 with nothing to change in your settings. Older bundles show an "update available" banner on their first answer.
+
+---
+
 ## v1.3.1 – 2026-10-07
 
 ### New
