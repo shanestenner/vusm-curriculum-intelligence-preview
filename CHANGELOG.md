@@ -4,6 +4,24 @@ Pilot-user-facing release notes for the `curriculum-intelligence` skill bundle. 
 
 ---
 
+## v1.4.0 – 2026-10-14
+
+### New (Preview)
+- **Draft Content Review.** Paste a draft lecture, outline, slide text, objectives list or session plan, and name the course (add the session date if you know it). In one request, the skill shows how the draft's concepts sit in the curriculum:
+  - where each concept has indexed evidence before your session: an earlier phase, or earlier in the same phase when you give a date;
+  - other courses that cover it, and when, each framed as "reinforcement or duplication?" for you to judge;
+  - which of the course's objectives and MEPOs the draft touches, and which it doesn't;
+  - how the draft's tasks compare with the Bloom's levels of objectives before, during and after your course.
+- **Your draft stays in the conversation.** Only concept names, the course and a date are sent to the curriculum API. The API's log doesn't keep the concept names from a review, and the feedback link carries only the course and the number of concepts.
+- **Your own session is left out.** With a date, the skill leaves the session you're drafting out of the "before" evidence. When several sessions fall on that date, it lists them and offers to rerun with the one you pick.
+- **Honest labels.** The report says "indexed evidence in [course]", never "already taught" or "students have met it". An absence is "no earlier evidence in the indexed materials". Bloom's levels come from course objectives, not from what was taught, and the report says so.
+- **Preview.** This mode is still being validated, and every report says so. Tell us what helps and what doesn't through the feedback link.
+
+### Migration
+Pilot bundles for v1.4.0 will be sent directly. It replaces v1.3.2 with nothing to change in your settings. Older bundles show an "update available" banner on their first answer.
+
+---
+
 ## v1.3.2 – 2026-10-07
 
 ### Fixed
